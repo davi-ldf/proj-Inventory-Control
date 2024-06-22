@@ -61,6 +61,7 @@ class Produto {
 interface ProdutoDAO {
     public function add(Produto $prod);
     public function findAll();
+    public function findByName($nome);
     public function findById($id);
     public function update(Produto $prod);
     public function delete($id);
