@@ -24,6 +24,9 @@ $lista = $produtoDao->findAll();
             <td><?php echo $produto->getId();?></td>
             <td><?php echo $produto->getNome();?></td>
             <td><?php echo $produto->getPrice();?></td>
+            <td><?php echo $produto->getCusto();?></td>
+            <td><?php echo $produto->getMCU();?></td>
+            <td><?php echo $produto->getMCT();?></td>
             <td>
                 <a href="editar.php?id=<?=$produto->getId();?>">[Editar]</a>
                 <a href="deletar.php?id=<?=$produto->getId();?>">[Deletar]</a>
