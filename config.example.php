@@ -1,5 +1,5 @@
 <?php 
-$db_name = '';
+$db_name = 'estoque';
 $db_host = '';
 $db_user = '';
 $db_pass = '';
