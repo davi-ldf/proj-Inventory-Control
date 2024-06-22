@@ -1,5 +1,5 @@
 <?php 
-require_once '../models/Usuario.php';
+require_once 'models/Produto.php';
 
 class ProdutoDaoMySQL implements ProdutoDAO {
     private $pdo;
@@ -15,7 +15,7 @@ class ProdutoDaoMySQL implements ProdutoDAO {
     public function findAll() {
         $array = [];
 
-        $sql = $this->pdo->prepare("SELECT * FROM produtos");
+        $sql = $this->pdo->query("SELECT * FROM produtos");
         if($sql->rowCount() > 0) {
             $data = $sql->fetchAll();
 
@@ -23,11 +23,11 @@ class ProdutoDaoMySQL implements ProdutoDAO {
                 $prod = new Produto();
                 $prod->setId($item['id']);
                 $prod->setNome($item['nome']);
-                $prod->setQtd($item['qtd']);
-                $prod->setPrice($item['price']);
+                $prod->setQtd($item['quantidade']);
+                $prod->setPrice($item['preco']);
                 $prod->setCusto($item['custo']);
-                $prod->setMCU($item['mcUni']);
-                $prod->setMCT($item['mcTot']);
+                $prod->setMCU($item['mcu']);
+                $prod->setMCT($item['mct']);
 
                 $array[] = $prod;
             }
