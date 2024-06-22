@@ -56,6 +56,12 @@ class Produto {
     public function setMCT($mct) {
         $this->mcTot = trim($mct); 
     }
+}
 
-
+interface ProdutoDAO {
+    public function add(Produto $prod);
+    public function findAll();
+    public function findById($id);
+    public function update(Produto $prod);
+    public function delete($id);
 }
