@@ -1,8 +1,12 @@
 <h1>Adicionar Produto</h1>
-<form action="" method="post">
+<form action="adicionar_action.php" method="post">
     <label>
         Nome: <br>
         <input type="text" name="name">
+    </label> <br> <br>
+    <label>
+        Quantidade: <br>
+        <input type="number" name="qtd">
     </label> <br> <br>
     <label>
         Preço: <br>

@@ -9,7 +9,17 @@ class ProdutoDaoMySQL implements ProdutoDAO {
     }
 
     public function add(Produto $prod) {
+        $sql = $this->pdo->prepare("INSERT INTO produtos (nome, quantidade, preco, custo, mcu, mct) VALUES (:nome, :qtd, :preco, :custo, :mcu, :mct)");
+        $sql->bindValue(':nome', $prod->getNome());
+        $sql->bindValue(':qtd', $prod->getQtd());
+        $sql->bindValue(':preco', $prod->getPrice());
+        $sql->bindValue(':custo', $prod->getCusto());
+        $sql->bindValue(':mcu', $prod->getMCU());
+        $sql->bindValue(':mct', $prod->getMCT());
+        $sql->execute();
 
+        $prod->setId($this->pdo->lastInsertId());
+        return $prod;
     }
 
     public function findAll() {
@@ -37,11 +47,51 @@ class ProdutoDaoMySQL implements ProdutoDAO {
 
     }
 
-    public function findByName($nome) {
-        
+    public function findByName($name) {
+        $sql = $this->pdo->prepare("SELECT * FROM produtos WHERE nome = :nome");
+        $sql->bindValue(':nome', $name);
+        $sql->execute();
+
+        if($sql->rowCount() > 0) {
+            $data = $sql->fetch();
+
+            $prod = new Produto();
+            $prod->setId($data['id']);
+            $prod->setNome($data['nome']);
+            $prod->setQtd($data['quantidade']);
+            $prod->setPrice($data['preco']);
+            $prod->setCusto($data['custo']);
+            $prod->setMCU($data['mcu']);
+            $prod->setMCT($data['mct']);
+
+            return $prod;
+
+        } else {
+            return false;
+        }
     }
 
     public function findById($id) {
+        $sql = $this->pdo->prepare("SELECT * FROM produtos WHERE id = :id");
+        $sql->bindValue(':id', $id);
+        $sql->execute();
+
+        if($sql->rowCount() > 0) {
+            $data = $sql->fetch();
+
+            $prod = new Produto();
+            $prod->setId($data['id']);
+            $prod->setNome($data['nome']);
+            $prod->setQtd($data['quantidade']);
+            $prod->setPrice($data['preco']);
+            $prod->setCusto($data['custo']);
+            $prod->setMCU($data['mcu']);
+            $prod->setMCT($data['mct']);
+
+            return $prod;
+        } else {
+            return false;
+        }
 
     }
 

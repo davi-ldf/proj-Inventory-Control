@@ -13,6 +13,7 @@ $lista = $produtoDao->findAll();
     <tr>
         <th>Id</th>
         <th>Produto</th>
+        <th>Quantidade</th>
         <th>Preço de venda</th>
         <th>Custo de aquisição</th>
         <th>MC Unitária</th>
@@ -23,10 +24,11 @@ $lista = $produtoDao->findAll();
         <tr>
             <td><?php echo $produto->getId();?></td>
             <td><?php echo $produto->getNome();?></td>
+            <td><?php echo $produto->getQtd();?></td>
             <td><?php echo $produto->getPrice();?></td>
-            <td><?php echo $produto->getCusto();?></td>
-            <td><?php echo $produto->getMCU();?></td>
-            <td><?php echo $produto->getMCT();?></td>
+            <td><?php echo 'R$'.number_format($produto->getCusto(), 2, ',', '.');?></td>
+            <td><?php echo 'R$'.number_format($produto->getMCU(), 2, ',', '.');?></td>
+            <td><?php echo 'R$'.number_format( $produto->getMCT(), 2, ',', '.');?></td>
             <td>
                 <a href="editar.php?id=<?=$produto->getId();?>">[Editar]</a>
                 <a href="deletar.php?id=<?=$produto->getId();?>">[Deletar]</a>
