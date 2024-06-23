@@ -97,7 +97,18 @@ class ProdutoDaoMySQL implements ProdutoDAO {
     }
 
     public function update(Produto $prod) {
-        
+        $sql = $this->pdo->prepare("UPDATE produtos SET nome = :nome, quantidade = :qtd, preco = :preco, custo = :custo, mcu = :mcu, mct = :mct WHERE id = :id");
+        $sql->bindValue(':nome', $prod->getNome());
+        $sql->bindValue(':qtd', $prod->getQtd());
+        $sql->bindValue(':preco', $prod->getPrice());
+        $sql->bindValue(':custo', $prod->getCusto());
+        $sql->bindValue(':mcu', $prod->getMCU());
+        $sql->bindValue(':mct', $prod->getMCT());
+        $sql->bindValue(':id', $prod->getId());
+        $sql->execute();
+
+        return true;
+
     }
 
     public function delete($id) {
