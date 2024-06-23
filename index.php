@@ -4,6 +4,7 @@ require 'dao/ProdutoDaoMySQL.php';
 
 $produtoDao = new ProdutoDaoMySQL($pdo);
 $lista = $produtoDao->findAll();
+$somaMargem = $produtoDao->somaMargem();
 
 ?>
 
@@ -36,5 +37,5 @@ $lista = $produtoDao->findAll();
         </tr>
 
     <?php endforeach; ?>
-
 </table>
+<h2>Margem total do estoque: <?php echo 'R$'.number_format($somaMargem, 2, ',', '.');?></h2>

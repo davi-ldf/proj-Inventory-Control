@@ -117,4 +117,12 @@ class ProdutoDaoMySQL implements ProdutoDAO {
         $sql->execute();
         
     }
+
+    public function somaMargem() {
+        $sql = $this->pdo->query("SELECT SUM(mct) as soma_mct FROM produtos");
+        $data = $sql->fetch();
+
+        return $data['soma_mct'] !== null ? $data['soma_mct'] : 0;
+        
+    }
 }

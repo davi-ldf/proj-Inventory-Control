@@ -65,4 +65,5 @@ interface ProdutoDAO {
     public function findById($id);
     public function update(Produto $prod);
     public function delete($id);
+    public function somaMargem();
 }
