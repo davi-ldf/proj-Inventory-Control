@@ -53,6 +53,7 @@ class ProdutoDaoMySQL implements ProdutoDAO {
         $sql->execute();
 
         if($sql->rowCount() > 0) {
+        //Se achou um usuário com esse nome
             $data = $sql->fetch();
 
             $prod = new Produto();
